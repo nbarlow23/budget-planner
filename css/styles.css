@@ -5,7 +5,15 @@ img {
 
 .bg-prim {
     background-color: #42C98F;
+}
+
+.btn-primary {
+    background-color: #42C98F;
     color: #000;
+}
+
+.btn-info {
+    background-color: #28B0AC;
 }
 
 .center {
@@ -44,7 +52,6 @@ expenses {
     flex: 1;
 }
 
-<<<<<<< HEAD
 income h3, expenses h3 {
   text-align: center;
   padding: 15px;
@@ -67,8 +74,6 @@ income img, expenses img {
   color: #E52528;
 }
 
-=======
->>>>>>> 6697378bcac559778f28404b93e9bfb067136839
 /*
 2B3445
 A4DEDE
