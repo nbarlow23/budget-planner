@@ -5,7 +5,7 @@ img {
 
 .bg-prim {
     background-color: #42C98F;
-    color: #fff;
+    color: #000;
 }
 
 .center {
@@ -22,15 +22,9 @@ h1, h2, h3, h4 {
     margin-right: 15%;
 }
 
-<<<<<<< HEAD
  table th {
     text-align: center;
  }
-=======
-table th {
-    text-align: center;
-}
->>>>>>> 6697378bcac559778f28404b93e9bfb067136839
 
 .visuals {
     display: grid;
