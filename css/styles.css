@@ -4,7 +4,7 @@ img {
 }
 
 .bg-prim {
-    background-color: #0B8E6A;
+    background-color: #42C98F;
     color: #fff;
 }
 
@@ -30,19 +30,6 @@ table th {
     grid-row-gap: 15px;
     padding-left: 15px;
     padding-right: 15px;
-}
-
-section {
-    display: flex;
-}
-
-aside {
-    flex: 1;
-}
-
-article {
-    flex: 4;
-    margin-right: 100px;
 }
 
 .overview {
