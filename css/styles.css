@@ -28,3 +28,11 @@ article {
     flex: 4;
     margin-right: 100px;
 }
+
+.overview {
+ display: flex;
+}
+
+income, expenses {
+  flex: 1;
+}
