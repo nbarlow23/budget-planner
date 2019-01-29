@@ -10,6 +10,13 @@ img {
 h1, h2, h3, h4 {
   padding: 15px;
 }
+.table {
+    margin: auto;
+ }
+
+ table th {
+    text-align: center;
+ }
 
 .visuals {
   display: grid;
@@ -46,12 +53,27 @@ income h3, expenses h3 {
   padding: 15px;
 }
 
+income img, expenses img {
+  max-width: 600px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 #incomeAmount {
   text-align: center;
-  color: ;
+  color: #149945 ;
 }
 
 #expensesAmount {
   text-align: center;
   color: #E52528;
 }
+
+/*
+2B3445
+A4DEDE
+28B0AC
+42C98F
+149945
+*/
