@@ -22,15 +22,9 @@ h1, h2, h3, h4 {
     margin-right: 15%;
 }
 
-<<<<<<< HEAD
- table th {
-    text-align: center;
- }
-=======
 table th {
     text-align: center;
 }
->>>>>>> 6697378bcac559778f28404b93e9bfb067136839
 
 .visuals {
     display: grid;
@@ -63,7 +57,6 @@ expenses {
     flex: 1;
 }
 
-<<<<<<< HEAD
 income h3, expenses h3 {
   text-align: center;
   padding: 15px;
@@ -86,8 +79,6 @@ income img, expenses img {
   color: #E52528;
 }
 
-=======
->>>>>>> 6697378bcac559778f28404b93e9bfb067136839
 /*
 2B3445
 A4DEDE
