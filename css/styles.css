@@ -7,6 +7,15 @@ img {
     background-color: #0B8E6A;
 }
 
+.visuals {
+  display: grid;
+  grid-template: auto auto auto auto auto / 1fr 1fr 1fr;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
 section {
     display: flex;
 }
