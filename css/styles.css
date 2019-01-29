@@ -7,6 +7,10 @@ img {
     background-color: #0B8E6A;
 }
 
+h1, h2, h3, h4 {
+  padding: 15px;
+}
+
 .visuals {
   display: grid;
   grid-template: auto auto auto auto auto / 1fr 1fr 1fr;
@@ -35,4 +39,19 @@ article {
 
 income, expenses {
   flex: 1;
+}
+
+income h3, expenses h3 {
+  text-align: center;
+  padding: 15px;
+}
+
+#incomeAmount {
+  text-align: center;
+  color: ;
+}
+
+#expensesAmount {
+  text-align: center;
+  color: #E52528;
 }
