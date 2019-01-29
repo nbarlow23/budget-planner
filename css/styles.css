@@ -7,6 +7,14 @@ img {
     background-color: #0B8E6A;
 }
 
+.table {
+    margin: auto;
+ }
+
+ table th {
+    text-align: center; 
+ } 
+
 .visuals {
   display: grid;
   grid-template: auto auto auto auto auto / 1fr 1fr 1fr;
@@ -36,3 +44,12 @@ article {
 income, expenses {
   flex: 1;
 }
+
+
+/*
+2B3445
+A4DEDE
+28B0AC
+42C98F
+149945
+*/
