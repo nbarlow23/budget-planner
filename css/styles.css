@@ -5,26 +5,40 @@ img {
 
 .bg-prim {
     background-color: #0B8E6A;
+    color: #fff;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 h1, h2, h3, h4 {
   padding: 15px;
 }
 .table {
-    margin: auto;
- }
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+}
 
+<<<<<<< HEAD
  table th {
     text-align: center;
  }
+=======
+table th {
+    text-align: center;
+}
+>>>>>>> 6697378bcac559778f28404b93e9bfb067136839
 
 .visuals {
-  display: grid;
-  grid-template: auto auto auto auto auto / 1fr 1fr 1fr;
-  grid-column-gap: 15px;
-  grid-row-gap: 15px;
-  padding-left: 15px;
-  padding-right: 15px;
+    display: grid;
+    grid-template: auto auto auto auto auto / 1fr 1fr 1fr;
+    grid-column-gap: 15px;
+    grid-row-gap: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 section {
@@ -41,13 +55,15 @@ article {
 }
 
 .overview {
- display: flex;
+    display: flex;
 }
 
-income, expenses {
-  flex: 1;
+income,
+expenses {
+    flex: 1;
 }
 
+<<<<<<< HEAD
 income h3, expenses h3 {
   text-align: center;
   padding: 15px;
@@ -70,6 +86,8 @@ income img, expenses img {
   color: #E52528;
 }
 
+=======
+>>>>>>> 6697378bcac559778f28404b93e9bfb067136839
 /*
 2B3445
 A4DEDE
