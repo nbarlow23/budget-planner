@@ -13,15 +13,24 @@ img {
     margin-right: auto;
 }
 
+h1, h2, h3, h4 {
+  padding: 15px;
+}
 .table {
     width: 70%;
     margin-left: 15%;
     margin-right: 15%;
 }
 
+<<<<<<< HEAD
+ table th {
+    text-align: center;
+ }
+=======
 table th {
     text-align: center;
 }
+>>>>>>> 6697378bcac559778f28404b93e9bfb067136839
 
 .visuals {
     display: grid;
@@ -54,6 +63,31 @@ expenses {
     flex: 1;
 }
 
+<<<<<<< HEAD
+income h3, expenses h3 {
+  text-align: center;
+  padding: 15px;
+}
+
+income img, expenses img {
+  max-width: 600px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#incomeAmount {
+  text-align: center;
+  color: #149945 ;
+}
+
+#expensesAmount {
+  text-align: center;
+  color: #E52528;
+}
+
+=======
+>>>>>>> 6697378bcac559778f28404b93e9bfb067136839
 /*
 2B3445
 A4DEDE
