@@ -5,23 +5,31 @@ img {
 
 .bg-prim {
     background-color: #0B8E6A;
+    color: #fff;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .table {
-    margin: auto;
- }
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+}
 
- table th {
-    text-align: center; 
- } 
+table th {
+    text-align: center;
+}
 
 .visuals {
-  display: grid;
-  grid-template: auto auto auto auto auto / 1fr 1fr 1fr;
-  grid-column-gap: 15px;
-  grid-row-gap: 15px;
-  padding-left: 15px;
-  padding-right: 15px;
+    display: grid;
+    grid-template: auto auto auto auto auto / 1fr 1fr 1fr;
+    grid-column-gap: 15px;
+    grid-row-gap: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 section {
@@ -38,13 +46,13 @@ article {
 }
 
 .overview {
- display: flex;
+    display: flex;
 }
 
-income, expenses {
-  flex: 1;
+income,
+expenses {
+    flex: 1;
 }
-
 
 /*
 2B3445
