@@ -4,8 +4,15 @@ img {
 }
 
 .bg-prim {
-    background-color: #0B8E6A;
-    color: #fff;
+    background-color: #42C98F;
+}
+
+.btn-primary {
+    background-color: #42C98F;
+}
+
+.btn-info {
+    background-color: #28B0AC;
 }
 
 .center {
@@ -22,9 +29,15 @@ h1, h2, h3, h4 {
     margin-right: 15%;
 }
 
+<<<<<<< HEAD
+ table th {
+    text-align: center;
+ }
+=======
 table th {
     text-align: center;
 }
+>>>>>>> 6c9358b76368f20624547425a15607b3f491e8d3
 
 .visuals {
     display: grid;
@@ -33,19 +46,6 @@ table th {
     grid-row-gap: 15px;
     padding-left: 15px;
     padding-right: 15px;
-}
-
-section {
-    display: flex;
-}
-
-aside {
-    flex: 1;
-}
-
-article {
-    flex: 4;
-    margin-right: 100px;
 }
 
 .overview {
