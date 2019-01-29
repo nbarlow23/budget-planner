@@ -25,8 +25,8 @@ img {
   grid-template: auto auto auto auto auto / 1fr 1fr 1fr;
   grid-column-gap: 10px;
   grid-row-gap: 10px;
-  padding-left: : 10px;
-  padding-right: : 10px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 h1, h2, h3, h4 {
@@ -38,14 +38,9 @@ h1, h2, h3, h4 {
     margin-right: 15%;
 }
 
-<<<<<<< HEAD
  table th {
     text-align: center;
  }
-=======
-table th {
-    text-align: center;
-}
 
 .visuals {
     display: grid;
