@@ -10,10 +10,10 @@ img {
 .visuals {
   display: grid;
   grid-template: auto auto auto auto auto / 1fr 1fr 1fr;
-  grid-column-gap: 10px;
-  grid-row-gap: 10px;
-  padding-left: : 20px;
-  padding-right: : 20px;
+  grid-column-gap: 15px;
+  grid-row-gap: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 section {
