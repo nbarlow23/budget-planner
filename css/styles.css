@@ -29,15 +29,9 @@ h1, h2, h3, h4 {
     margin-right: 15%;
 }
 
-<<<<<<< HEAD
  table th {
     text-align: center;
  }
-=======
-table th {
-    text-align: center;
-}
->>>>>>> 6c9358b76368f20624547425a15607b3f491e8d3
 
 .visuals {
     display: grid;
