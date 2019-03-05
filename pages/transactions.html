@@ -52,6 +52,15 @@
                     </tr>
                 </thead>
                 <tbody id="tBody">
+                    <tr v-for="transaction in transactions">
+                        <td>{{transaction.date}}</td>
+                        <td>{{transaction.amount}}</td>
+                        <td>{{transaction.description}}</td>
+                        <td>{{transaction.category}}</td>
+                        <td>
+                            <button type="button" class="btn btn-danger" v-on:click="deleteTransaction(transaction)">Delete</button>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>

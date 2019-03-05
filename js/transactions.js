@@ -22,11 +22,9 @@ const app = new Vue({
     },
     created() {
         this.showButton();
-        this.initTable();
     },
     methods: {
         onClickNewTransaction() {
-            console.log('h');
             this.showForm();
         },
         showForm() {
@@ -41,11 +39,6 @@ const app = new Vue({
             btn.style.display = "block";
             form.style.display = "none";
         },
-        initTable() {
-            this.transactions.forEach(transaction => {
-                this.addTransaction(transaction);
-            });
-        },
         createTransaction() {
             let transaction = {
                 date: this.addedDate,
@@ -58,23 +51,11 @@ const app = new Vue({
             this.addedDescription = '';
             this.addedCategory = '';
             this.transactions.push(transaction);
-            this.addTransaction(transaction);
         },
-        addTransaction(transaction) {
-            const body = document.getElementById('tBody');
-            let row = document.createElement('tr');
-            const keys = Object.keys(transaction);
-            keys.forEach(key => {
-                let cell = document.createElement('td');
-                cell.innerHTML = transaction[key];
-                row.appendChild(cell);
-            });
-            let cell = document.createElement('td');
-            let btn = document.createElement('BUTTON');
-            btn.appendChild(document.createTextNode('Delete'));
-            cell.appendChild(btn);
-            row.appendChild(cell);
-            body.appendChild(row);
+        deleteTransaction(transaction) {
+            var index = this.transactions.indexOf(transaction);
+            if (index > -1)
+                this.transactions.splice(index, 1);
         }
     },
 });
