@@ -58,7 +58,8 @@
                         <td>{{transaction.description}}</td>
                         <td>{{transaction.category}}</td>
                         <td>
-                            <button type="button" class="btn btn-danger" v-on:click="deleteTransaction(transaction)">Delete</button>
+                            <button type="button" class="btn btn-danger"
+                                v-on:click="deleteTransaction(transaction)">Delete</button>
                         </td>
                     </tr>
                 </tbody>
@@ -80,11 +81,12 @@
 
     </div>
 
-    <div class="fixed-bottom">
-        <a href="https://github.com/cs260-wolf-pack/budget-planner.git">
-            <img src="../images/GitHub-Mark-64px.png" style="width:42px;height:42px;border:0;" />
-        </a>
-    </div>
+    <footer class="mt-5 mb-3">
+        <div class="text-center">
+            <a href="https://github.com/cs260-wolf-pack/budget-planner.git" target="_blank"><img
+                    src="../images/GitHub-Mark-64px.png" style="width:42px;height:42px;border:0;" /></a>
+        </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.2/dist/vue.js"></script>
     <script src="../js/transactions.js"></script>
