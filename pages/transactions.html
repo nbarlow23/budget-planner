@@ -2,8 +2,8 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/styles.css" />
     <link rel="shortcut icon" href="../images/dollars.ico" type="image/x-icon" />
     <title>Transactions</title>
@@ -12,8 +12,8 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-prim">
         <a class="navbar-brand" href="../index.html">MoneyTracker v260</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
-            aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -22,7 +22,8 @@
                     <a class="nav-link" href="../index.html">Home</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="./transactions.html">Transactions<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="./transactions.html">Transactions<span
+                            class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="./income.html">Income</a>
@@ -38,9 +39,9 @@
         </div>
     </nav>
     <h1 class="pt-4 px-5">Track Your Transactions</h1>
-    <div class="container-fluid">
+    <div id="app" class="container-fluid">
         <div class="table-responsive mt-5">
-            <table class="table table-hover text-center">
+            <table id="table" class="table table-hover text-center">
                 <thead>
                     <tr>
                         <th scope="col">Date</th>
@@ -50,64 +51,24 @@
                         <th scope="col"></th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>1/05</td>
-                        <td>$40.00</td>
-                        <td>Maverick Gas</td>
-                        <td>Gas</td>
-                        <td><button type="button" class="btn btn-info">Edit</button>&nbsp<button type="button" class="btn btn-danger">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>1/06</td>
-                        <td>$700.00</td>
-                        <td>January Rent & Utilities</td>
-                        <td>Rent</td>
-                        <td><button type="button" class="btn btn-info">Edit</button>&nbsp<button type="button" class="btn btn-danger">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>1/10</td>
-                        <td>$225.00</td>
-                        <td>Walmart Grocieries</td>
-                        <td>Groceries</td>
-                        <td><button type="button" class="btn btn-info">Edit</button>&nbsp<button type="button" class="btn btn-danger">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>1/14</td>
-                        <td>$15.00</td>
-                        <td>Laundromat on 9th</td>
-                        <td>Laundry</td>
-                        <td><button type="button" class="btn btn-info">Edit</button>&nbsp<button type="button" class="btn btn-danger">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>1/19</td>
-                        <td>$225.00</td>
-                        <td>Ross</td>
-                        <td>Clothing</td>
-                        <td><button type="button" class="btn btn-info">Edit</button>&nbsp<button type="button" class="btn btn-danger">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>1/21</td>
-                        <td>$125.00</td>
-                        <td>Jazz Game</td>
-                        <td>Entertainment</td>
-                        <td><button type="button" class="btn btn-info">Edit</button>&nbsp<button type="button" class="btn btn-danger">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>1/25</td>
-                        <td>$50.00</td>
-                        <td>CVS Pharmacy</td>
-                        <td>Personal Care</td>
-                        <td><button type="button" class="btn btn-info">Edit</button>&nbsp<button type="button" class="btn btn-danger">Delete</button></td>
-                    </tr>
+                <tbody id="tBody">
                 </tbody>
             </table>
         </div>
         <div class="container my-3">
             <div class="row">
-                <button type="button" class="btn bg-prim center">New Transaction</button>
+                <button id="button" v-on:click="onClickNewTransaction" type="button" class="btn bg-prim center">New
+                    Transaction</button>
+                <form id="form" v-on:submit.prevent="createTransaction">
+                    <input v-model="addedDate" placeholder="01/01/1970">
+                    <input v-model="addedAmount" placeholder="$20.50">
+                    <input v-model="addedDescription" placeholder="Describe your transaction">
+                    <input v-model="addedCategory" placeholder="Rent/Utilities">
+                    <button type="submit">Submit</button>
+                </form>
             </div>
         </div>
+
     </div>
 
     <div class="fixed-bottom">
@@ -116,13 +77,16 @@
         </a>
     </div>
 
-    <script src="../js/transactions.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.2/dist/vue.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    <script src="../js/transactions.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
         crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
         crossorigin="anonymous"></script>
 </body>
 
