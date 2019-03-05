@@ -39,7 +39,7 @@
         </div>
     </nav>
     <h1 class="pt-4 px-5">Manage Your Spending Categories</h1>
-    <div class="container-fluid pb-5">
+    <div id="app" class="container-fluid pb-5">
         <div class="table-responsive mt-5">
             <table class="table table-hover text-center">
                 <thead>
@@ -51,56 +51,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Savings</td>
-                        <td>This is my big long description for savings</td>
-                        <td><button type="button" class="btn btn-info">Edit</button>&nbsp<button type="button"
-                                class="btn btn-danger">Delete</button></td>
+                    <tr v-for="category in categories">
+                        <th scope="row">{{categoryNum(category)}}</th>
+                        <td>{{category.categoryName}}</td>
+                        <td>{{category.categoryDescription}}</td>
+                        <td>
+                            <button type="button" class="btn btn-danger"
+                                v-on:click="deleteCategory(category)">Delete</button>
+                        </td>
                     </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Rent</td>
-                        <td>This is my description for rent.</td>
-                        <td><button type="button" class="btn btn-info">Edit</button>&nbsp<button type="button"
-                                class="btn btn-danger">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Entertainment</td>
-                        <td>This is my description for entertainment.</td>
-                        <td><button type="button" class="btn btn-info">Edit</button>&nbsp<button type="button"
-                                class="btn btn-danger">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>Clothing</td>
-                        <td>This is my description for clothing.</td>
-                        <td><button type="button" class="btn btn-info">Edit</button>&nbsp<button type="button"
-                                class="btn btn-danger">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">5</th>
-                        <td>Grocery</td>
-                        <td>This is my description for grocery.</td>
-                        <td><button type="button" class="btn btn-info">Edit</button>&nbsp<button type="button"
-                                class="btn btn-danger">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">6</th>
-                        <td>Personal Care</td>
-                        <td>This is my description for personal care.</td>
-                        <td><button type="button" class="btn btn-info">Edit</button>&nbsp<button type="button"
-                                class="btn btn-danger">Delete</button></td>
-                    </tr>
-
                 </tbody>
             </table>
         </div>
         <div class="container my-3">
-            <div class="row">
-                <button type="button" class="btn bg-prim center">New Category</button>
-            </div>
+            <button id="button" v-on:click="onClickNewCategory" type="button" class="btn bg-prim center">New
+                Category</button>
+            <form id="form" v-on:submit.prevent="createCategory">
+                <input v-model="addedCategoryName" placeholder="Rent/Utilities">
+                <input v-model="addedDescription" placeholder="Describe your category">
+                <button type="submit">Submit</button>
+            </form>
         </div>
     </div>
 
@@ -111,8 +81,8 @@
         </div>
     </footer>
 
-    <script src="../js/categories.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.2/dist/vue.js"></script>
+    <script src="../js/categories.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
