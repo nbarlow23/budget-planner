@@ -51,6 +51,7 @@ const app = new Vue({
             this.addedDescription = '';
             this.addedCategory = '';
             this.transactions.push(transaction);
+            this.showButton();
         },
         deleteTransaction(transaction) {
             var index = this.transactions.indexOf(transaction);
