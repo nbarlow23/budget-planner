@@ -1,4 +1,4 @@
-const app = new VTTCue({
+const app = new Vue({
     el: '#app',
     data: {
         incomes: [
@@ -22,7 +22,6 @@ const app = new VTTCue({
     },
     created() {
         this.showButton();
-        this.initTable();
     },
     methods: {
         onClickNewIncome() {
@@ -40,11 +39,6 @@ const app = new VTTCue({
             btn.style.display = "block";
             form.style.display = "none";
         },
-        initTable() {
-            this.incomes.forEach(income => {
-                this.addIncome(income);
-            });
-        },
         createIncome() {
             let income = {
                 date: this.addedDate,
@@ -56,7 +50,13 @@ const app = new VTTCue({
             this.addedAmount = '';
             this.addedDescription = '';
             this.addedCategory = '';
-            this.incomes.push()
-        }
-    }
-})
+            this.incomes.push(income);
+            this.showButton();
+        },
+        deleteIncome(income) {
+            let index = this.incomes.indexOf(income);
+            if (index > -1)
+                this.incomes.splice(index, 1);
+        },
+   },
+});

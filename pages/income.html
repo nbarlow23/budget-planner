@@ -37,44 +37,50 @@
             </ul>
         </div>
     </nav>
-    <h1 class="pt-4 px-5">Track Your Income</h1>
-    <div class="table-responsive mt-5">
-        <table class="table table-hover text-center">
-            <thead>
-                <tr>
-                    <th scope="col">Date</th>
-                    <th scope="col">Amount</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Category</th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1/01</td>
-                    <td>$750.00</td>
-                    <td>Work</td>
-                    <td>Salary</td>
-                    <td><button type="button" class="btn btn-info">Edit</button>&nbsp<button type="button"
-                            class="btn btn-danger">Delete</button></td>
-                </tr>
-                <tr>
-                    <td>1/15</td>
-                    <td>$750.00</td>
-                    <td>Work</td>
-                    <td>Salary</td>
-                    <td><button type="button" class="btn btn-info">Edit</button>&nbsp<button type="button"
-                            class="btn btn-danger">Delete</button></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="container mt-3">
-        <div class="row">
-            <button type="button" class="btn bg-prim center">New Income $$$</button>
-        </div>
-    </div>
 
+    <h1 class="pt-4 px-5">Track Your Income</h1>
+    <div id ="app" class="container-fluid">
+        <div class="table-responsive mt-5">
+            <table id="table" class="table table-hover text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Category</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody id="tBody">
+                    <tr v-for="income in incomes">
+                        <td>{{income.date}}</td>
+                        <td>{{income.amount}}</td>
+                        <td>{{income.description}}</td>
+                        <td>{{income.category}}</td>
+                        <td>
+                            <button type="button" class="btn btn-danger"
+                            v-on:click="deleteIncome(income)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="container my-3">
+                <div class="row">
+                    <button id="button" v-on:click="onClickNewIncome" type="button" class="btn bg-prim center">New
+                        Income</button>
+                    <form id="form" v-on:submit.prevent="createIncome">
+                        <input v-model="addedDate" placeholder="01/01/1970">
+                        <input v-model="addedAmount" placeholder="$9001.00">
+                        <input v-model="addedDescription" placeholder="Describe your income">
+                        <input v-model="addedCategory" placeholder="Salary">
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+
+    </div>
+    
     <footer class="mt-5 mb-3">
         <div class="text-center">
             <a href="https://github.com/cs260-wolf-pack/budget-planner.git" target="_blank"><img
