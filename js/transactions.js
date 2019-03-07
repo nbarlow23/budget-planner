@@ -4,13 +4,13 @@ const app = new Vue({
         transactions: [
             {
                 date: '01/05',
-                amount: '$40.00',
+                amount: '40.00',
                 description: 'Maverick Gas',
                 category: 'Gas'
             },
             {
                 date: '01/06',
-                amount: '$700.00',
+                amount: '700.00',
                 description: 'January Rent & Utilities',
                 category: 'Rent'
             },
@@ -19,11 +19,32 @@ const app = new Vue({
         addedAmount: '',
         addedDescription: '',
         addedCategory: '',
+        budget: 1500,
     },
     created() {
         this.showButton();
     },
+    computed: {
+        summaryString() {
+            const res = this.budgetSummary();
+            return 'You are $' + Math.abs(res) + ((res < 0) ? ' over ' : ' under ') + ' budget!';
+        },
+        totalTransactions() {
+            let total = 0;
+            this.transactions.forEach(t => {
+                total += parseFloat(t.amount);
+            });
+            return total;
+        }
+    },
     methods: {
+        budgetSummary() {
+            let total = 0;
+            this.transactions.forEach(t => {
+                total += parseFloat(t.amount);
+            });
+            return (this.budget - total).toFixed(2);
+        },
         onClickNewTransaction() {
             this.showForm();
         },
@@ -40,6 +61,9 @@ const app = new Vue({
             form.style.display = "none";
         },
         createTransaction() {
+            if (this.addedAmount[0] === '$') {
+                this.addedAmount = this.addedAmount.substr(1);
+            }
             let transaction = {
                 date: this.addedDate,
                 amount: this.addedAmount,

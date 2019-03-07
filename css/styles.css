@@ -20,6 +20,10 @@ img {
     margin-right: auto;
 }
 
+.summary {
+  margin-right: 15%;
+}
+
 .visuals {
   display: grid;
   grid-template: auto auto auto auto auto / 1fr 1fr 1fr;
@@ -72,14 +76,20 @@ income img, expenses img {
   margin-right: auto;
 }
 
+.incomeColor {
+  color: #149945 ;
+}
+
+.dangerColor {
+  color: #E52528;
+}
+
 #incomeAmount {
   text-align: center;
-  color: #149945 ;
 }
 
 #expensesAmount {
   text-align: center;
-  color: #E52528;
 }
 
 /*

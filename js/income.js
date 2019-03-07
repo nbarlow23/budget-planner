@@ -4,13 +4,13 @@ const app = new Vue({
         incomes: [
             {
                 date: '01/01',
-                amount: '$750.00',
+                amount: '750.00',
                 description: 'Work',
                 category: 'Income'
             },
             {
                 date: '01/15',
-                amount: '$750.00',
+                amount: '750.00',
                 description: 'Work',
                 category: 'Income'
             },  
@@ -22,6 +22,15 @@ const app = new Vue({
     },
     created() {
         this.showButton();
+    },
+    computed: {
+        totalIncome() {
+            let total = 0;
+            this.incomes.forEach(i => {
+                total += parseFloat(i.amount);
+            });
+            return total;
+        }
     },
     methods: {
         onClickNewIncome() {
@@ -40,6 +49,9 @@ const app = new Vue({
             form.style.display = "none";
         },
         createIncome() {
+            if (this.addedAmount[0] === '$') {
+                this.addedAmount = this.addedAmount.substr(1);
+            }
             let income = {
                 date: this.addedDate,
                 amount: this.addedAmount,
