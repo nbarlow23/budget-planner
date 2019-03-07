@@ -69,7 +69,7 @@
             <div class="row">
                 <button id="button" v-on:click="onClickNewTransaction" type="button" class="btn bg-prim center">New
                     Transaction</button>
-                <form id="form" v-on:submit.prevent="createTransaction">
+                <form class="m-auto" id="form" v-on:submit.prevent="createTransaction">
                     <input v-model="addedDate" placeholder="01/01/1970">
                     <input v-model="addedAmount" placeholder="$20.50">
                     <input v-model="addedDescription" placeholder="Describe your transaction">
