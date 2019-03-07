@@ -64,13 +64,15 @@
             </table>
         </div>
         <div class="container my-3">
-            <button id="button" v-on:click="onClickNewCategory" type="button" class="btn bg-prim center">New
-                Category</button>
-            <form class="m-auto" id="form" v-on:submit.prevent="createCategory">
-                <input v-model="addedCategoryName" placeholder="Rent/Utilities">
-                <input v-model="addedDescription" placeholder="Describe your category">
-                <button type="submit">Submit</button>
-            </form>
+            <div class="row">
+                <button id="button" v-on:click="onClickNewCategory" type="button" class="btn bg-prim center">New
+                    Category</button>
+                <form class="m-auto" id="form" v-on:submit.prevent="createCategory">
+                    <input v-model="addedCategoryName" placeholder="Rent/Utilities">
+                    <input v-model="addedDescription" placeholder="Describe your category">
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
         </div>
     </div>
 
