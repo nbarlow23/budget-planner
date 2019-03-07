@@ -71,10 +71,10 @@
                 <button id="button" v-on:click="onClickNewIncome" type="button" class="btn bg-prim center">New
                     Income</button>
                 <form class="m-auto" id="form" v-on:submit.prevent="createIncome">
-                    <input v-model="addedDate" placeholder="01/01/1970">
-                    <input v-model="addedAmount" placeholder="$9001.00">
-                    <input v-model="addedDescription" placeholder="Describe your income">
-                    <input v-model="addedCategory" placeholder="Salary">
+                    <input v-model="addedDate" placeholder="Date MM-DD">
+                    <input v-model="addedAmount" placeholder="Amount">
+                    <input v-model="addedDescription" placeholder="Description">
+                    <input v-model="addedCategory" placeholder="Category">
                     <button type="submit">Submit</button>
                 </form>
             </div>
