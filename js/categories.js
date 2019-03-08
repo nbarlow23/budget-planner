@@ -4,11 +4,11 @@ const app = new Vue({
         categories: [
             {
                 categoryName: 'Rent',
-                categoryDescription: 'Desc',
+                categoryDescription: 'Money I pay for a roof',
             },
             {
-                categoryName: 'New',
-                categoryDescription: 'new',
+                categoryName: 'Groceries',
+                categoryDescription: 'Money I pay to eat',
             },
         ],
         addedCategoryName: '',
