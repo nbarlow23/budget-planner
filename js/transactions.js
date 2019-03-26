@@ -80,9 +80,13 @@ const app = new Vue({
             }
         },
         async deleteTransaction(transaction) {
-            var index = this.transactions.indexOf(transaction);
-            if (index > -1)
-                this.transactions.splice(index, 1);
+            try {
+                let response = await axios.delete('/api/transactions/' + transaction._id);
+                this.getTransactions();
+                return true;
+            } catch (error) {
+                console.log(error);
+            }
         }
     },
 });
