@@ -87,7 +87,7 @@ app.post('/api/transactions', async (req, res) => {
         descriptipn: req.body.description,
     });
     try {
-        await incomeSchema.save();
+        await transaction.save();
         res.send(transaction);
     } catch (error) {
         console.log(error);
