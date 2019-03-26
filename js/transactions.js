@@ -26,6 +26,7 @@ const app = new Vue({
         }
     },
     methods: {
+
         async getTransactions() {
             try {
                 let response = await axios.get('/api/transactions');
@@ -43,21 +44,25 @@ const app = new Vue({
             });
             return (this.budget - total).toFixed(2);
         },
+
         onClickNewTransaction() {
             this.showForm();
         },
+
         showForm() {
             let form = document.getElementById('form');
             let btn = document.getElementById('button');
             form.style.display = "block";
             btn.style.display = "none";
         },
+
         showButton() {
             let form = document.getElementById('form');
             let btn = document.getElementById('button');
             btn.style.display = "block";
             form.style.display = "none";
         },
+        
         async createTransaction() {
             if (this.addedAmount[0] === '$') {
                 this.addedAmount = this.addedAmount.substr(1);

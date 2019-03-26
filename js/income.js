@@ -9,6 +9,7 @@ const app = new Vue({
     },
     created() {
         this.showButton();
+        this.getIncomes();
     },
     computed: {
         totalIncome() {
@@ -20,42 +21,65 @@ const app = new Vue({
         }
     },
     methods: {
+
+        async getIncomes() {
+            try {
+                let response = await axios.get('/api/incomes');
+                this.incomes = response.data;
+                return true;
+            } catch (error) {
+                console.log(error);
+            }
+        },
+
         onClickNewIncome() {
             this.showForm();
         },
+
         showForm() {
             let form = document.getElementById('form');
             let btn = document.getElementById('button');
             form.style.display = "block";
             btn.style.display = "none";
         },
+
         showButton() {
             let form = document.getElementById('form');
             let btn = document.getElementById('button');
             btn.style.display = "block";
             form.style.display = "none";
         },
-        createIncome() {
+
+        async createIncome() {
             if (this.addedAmount[0] === '$') {
                 this.addedAmount = this.addedAmount.substr(1);
             }
-            let income = {
-                date: this.addedDate,
-                amount: this.addedAmount,
-                description: this.addedDescription,
-                category: this.addedCategory,
-            };
+            try {
+                await axios.post('/api/incomes', {
+                    date: this.addedDate,
+                    amount: this.addedAmount,
+                    description: this.addedDescription,
+                    category: this.addedCategory,
+                });
             this.addedDate = '';
             this.addedAmount = '';
             this.addedDescription = '';
             this.addedCategory = '';
-            this.incomes.push(income);
             this.showButton();
+            this.getIncomes();
+            } catch (error) {
+                console.log(error);
+            }
         },
-        deleteIncome(income) {
-            let index = this.incomes.indexOf(income);
-            if (index > -1)
-                this.incomes.splice(index, 1);
-        },
+
+        async deleteIncome(income) {
+            try {
+                let response = await axios.delete('/api/incomes/' + income._id);
+                this.getIncomes();
+                return true;
+            } catch (error) {
+                console.log(error);
+            }
+        }
    },
 });
