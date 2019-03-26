@@ -26,7 +26,7 @@ const app = new Vue({
         }
     },
     methods: {
-        getTransactions() {
+        async getTransactions() {
             try {
                 let response = await axios.get('/api/transactions');
                 this.transactions = response.data;
@@ -58,7 +58,7 @@ const app = new Vue({
             btn.style.display = "block";
             form.style.display = "none";
         },
-        createTransaction() {
+        async createTransaction() {
             if (this.addedAmount[0] === '$') {
                 this.addedAmount = this.addedAmount.substr(1);
             }
@@ -79,7 +79,7 @@ const app = new Vue({
                 console.log(error);
             }
         },
-        deleteTransaction(transaction) {
+        async deleteTransaction(transaction) {
             var index = this.transactions.indexOf(transaction);
             if (index > -1)
                 this.transactions.splice(index, 1);
