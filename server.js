@@ -84,7 +84,7 @@ app.post('/api/transactions', async (req, res) => {
         date: req.body.date,
         amount: req.body.amount,
         category: req.body.category,
-        descriptipn: req.body.description,
+        description: req.body.description,
     });
     try {
         await transaction.save();
