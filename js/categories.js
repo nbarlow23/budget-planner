@@ -1,16 +1,7 @@
 const app = new Vue({
     el: '#app',
     data: {
-        categories: [
-            {
-                categoryName: 'Rent',
-                categoryDescription: 'Money I pay for a roof',
-            },
-            {
-                categoryName: 'Groceries',
-                categoryDescription: 'Money I pay to eat',
-            },
-        ],
+        categories: [],
         addedCategoryName: '',
         addedDescription: '',
     },
