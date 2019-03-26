@@ -1,20 +1,7 @@
 const app = new Vue({
     el: '#app',
     data: {
-        transactions: [
-            {
-                date: '01/05',
-                amount: '40.00',
-                description: 'Maverick Gas',
-                category: 'Gas'
-            },
-            {
-                date: '01/06',
-                amount: '700.00',
-                description: 'January Rent & Utilities',
-                category: 'Rent'
-            },
-        ],
+        transactions: [],
         addedDate: '',
         addedAmount: '',
         addedDescription: '',
@@ -23,6 +10,7 @@ const app = new Vue({
     },
     created() {
         this.showButton();
+        this.getTransactions();
     },
     computed: {
         summaryString() {
@@ -38,6 +26,16 @@ const app = new Vue({
         }
     },
     methods: {
+        getTransactions() {
+            try {
+                let response = await axios.get('/api/transactions');
+                this.transactions = response.data;
+                return true;
+            } catch (error) {
+                console.log(error);
+            }
+        },
+
         budgetSummary() {
             let total = 0;
             this.transactions.forEach(t => {
@@ -64,18 +62,22 @@ const app = new Vue({
             if (this.addedAmount[0] === '$') {
                 this.addedAmount = this.addedAmount.substr(1);
             }
-            let transaction = {
-                date: this.addedDate,
-                amount: this.addedAmount,
-                description: this.addedDescription,
-                category: this.addedCategory,
-            };
-            this.addedDate = '';
-            this.addedAmount = '';
-            this.addedDescription = '';
-            this.addedCategory = '';
-            this.transactions.push(transaction);
-            this.showButton();
+            try {
+                await axios.post('/api/transactions', {
+                    date: this.addedDate,
+                    amount: this.addedAmount,
+                    description: this.addedDescription,
+                    category: this.addedCategory,
+                });
+                this.addedDate = '';
+                this.addedAmount = '';
+                this.addedDescription = '';
+                this.addedCategory = '';
+                this.showButton();
+                this.getTransactions();
+            } catch (error) {
+                console.log(error);
+            }
         },
         deleteTransaction(transaction) {
             var index = this.transactions.indexOf(transaction);

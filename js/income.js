@@ -1,20 +1,7 @@
 const app = new Vue({
     el: '#app',
     data: {
-        incomes: [
-            {
-                date: '01/01',
-                amount: '750.00',
-                description: 'Work',
-                category: 'Income'
-            },
-            {
-                date: '01/15',
-                amount: '750.00',
-                description: 'Work',
-                category: 'Income'
-            },  
-        ],
+        incomes: [],
         addedDate: '',
         addedAmount: '',
         addedDescription: '',
