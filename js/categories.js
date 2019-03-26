@@ -7,10 +7,19 @@ const app = new Vue({
     },
     created() {
         this.showButton();
+        this.getCategories();
     },
     methods: {
+        async getCategories() {
+            try {
+                let response = await axios.get('/api/categories');
+                this.categories = response.data;
+                return true;
+            } catch (error) {
+                console.log(error);
+            }
+        },
         onClickNewCategory() {
-            console.log('here');
             this.showForm();
         },
         showForm() {
@@ -25,20 +34,28 @@ const app = new Vue({
             btn.style.display = "block";
             form.style.display = "none";
         },
-        createCategory() {
-            const category = {
-                categoryName: this.addedCategoryName,
-                categoryDescription: this.addedDescription,
+        async createCategory() {
+            try {
+                await axios.post('/api/categories', {
+                    title: this.addedCategoryName,
+                    description: this.addedDescription,
+                });
+                this.addedCategoryName = '';
+                this.addedDescription = '';
+                this.showButton();
+                this.getCategories();
+            } catch (error) {
+                console.log(error);
             }
-            this.categories.push(category);
-            this.addedCategoryName = '';
-            this.addedDescription = '';
-            this.showButton();
         },
-        deleteCategory(category) {
-            var index = this.categories.indexOf(category);
-            if (index > -1)
-                this.categories.splice(index, 1);
+        async deleteCategory(category) {
+            try {
+                let response = await axios.delete('/api/categories/' + category._id);
+                this.getCategories();
+                return true;
+            } catch (error) {
+                console.log(error);
+            }
         },
         categoryNum(category) {
             return this.categories.indexOf(category) + 1;

@@ -53,8 +53,8 @@
                 <tbody>
                     <tr v-for="category in categories">
                         <th scope="row">{{categoryNum(category)}}</th>
-                        <td>{{category.categoryName}}</td>
-                        <td>{{category.categoryDescription}}</td>
+                        <td>{{category.title}}</td>
+                        <td>{{category.description}}</td>
                         <td>
                             <button type="button" class="btn btn-danger"
                                 v-on:click="deleteCategory(category)">Delete</button>

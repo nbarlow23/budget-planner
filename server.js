@@ -67,7 +67,7 @@ app.get('/api/incomes', async (req, res) => {
 
 app.post('/api/categories', async (req, res) => {
     const category = new Category({
-        name: req.body.name,
+        title: req.body.title,
         description: req.body.description, 
     });
     try {
