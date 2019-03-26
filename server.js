@@ -79,9 +79,37 @@ app.post('/api/categories', async (req, res) => {
     }
 });
 
+app.post('/api/incomes', async (req, res) => {
+    const income = new Income({
+        date: req.body.date,
+        amount: req.body.amount,
+        category: req.body.category,
+        description: req.body.description, 
+    });
+    try {
+        await income.save();
+        res.send(income);
+    } catch (error) {
+        console.log(error);
+        res.sendStatus(500);
+    }
+});
+
 app.delete('/api/categories/:id', async (req, res) => {
     try {
         await Category.deleteOne({
+            _id: req.params.id
+        })
+        res.sendStatus(200);
+    } catch (error) {
+        console.log(error);
+        res.sendStatus(500);
+    }
+});
+
+app.delete('/api/incomes/:id', async (req, res) => {
+    try {
+        await Income.deleteOne({
             _id: req.params.id
         })
         res.sendStatus(200);
@@ -99,6 +127,23 @@ app.put('/api/categories/:id', async (req, res) => {
         category.title = req.body.title;
         category.description = req.body.description;
         category.save();
+        res.sendStatus(200);
+    } catch (error) {
+        console.log(error);
+        res.sendStatus(500);
+    }
+});
+
+app.put('/api/incomes/:id', async (req, res) => {
+    try {
+        const income = await Income.findOne({
+            _id: req.params.id
+        });
+        income.date = req.body.date;
+        income.amount = req.body.amount;
+        income.category = req.body.category;
+        income.description = req.body.description;
+        income.save();
         res.sendStatus(200);
     } catch (error) {
         console.log(error);
