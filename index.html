@@ -40,25 +40,28 @@
 
     <h1>Welcome to MoneyTracker v260</h1>
 
-    <section class="overview pb-5 mb-3">
+    <div id="app">
+        <section class="overview pb-5 mb-3">
 
-        <income>
-            <br>
-            <h3>Your total monthly income is:</h3>
-            <h2 class="incomeColor" id="incomeAmount">$1500.00</h2>
-            <br>
-            <img src="images/IncomeDoughnut.JPG">
-        </income>
+            <income>
+                <br>
+                <h3>Your total monthly income is:</h3>
+                <h2 class="incomeColor" id="incomeAmount">${{income}}</h2>
+                <br>
+                <img src="images/IncomeDoughnut.JPG">
+            </income>
 
-        <expenses>
-            <br>
-            <h3>Your total monthly expenses are:</h3>
-            <h2 class="dangerColor" id="expensesAmount">$1350.00</h2>
-            <br>
-            <img src="images/Doughnut.JPG">
-        </expenses>
+            <expenses>
+                <br>
+                <h3>Your total monthly expenses are:</h3>
+                <h2 class="dangerColor" id="expensesAmount">${{expenses}}</h2>
+                <br>
+                <img src="images/Doughnut.JPG">
+            </expenses>
 
-    </section>
+        </section>
+    </div>
+
 
     <footer class="mt-5 mb-3">
         <div class="text-center">
@@ -67,8 +70,8 @@
         </div>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" 
-    integrity="sha256-mpnrJ5DpEZZkwkE1ZgkEQQJW/46CSEh/STrZKOB/qoM=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"
+        integrity="sha256-mpnrJ5DpEZZkwkE1ZgkEQQJW/46CSEh/STrZKOB/qoM=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.2/dist/vue.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -79,6 +82,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
         integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
         crossorigin="anonymous"></script>
+        <script src="./js/index.js"></script>
 </body>
 
 </html>
