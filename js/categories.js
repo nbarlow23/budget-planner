@@ -4,6 +4,9 @@ const app = new Vue({
         categories: [],
         addedCategoryName: '',
         addedDescription: '',
+        editCategoryName: '',
+        editDescription: '',
+        editCategoryId: '',
     },
     created() {
         this.showButton();
@@ -28,11 +31,19 @@ const app = new Vue({
             form.style.display = "block";
             btn.style.display = "none";
         },
+        showEditForm() {
+            let form = document.getElementById('editForm');
+            let btn = document.getElementById('button');
+            form.style.display = "block";
+            btn.style.display = "none";
+        },
         showButton() {
             let form = document.getElementById('form');
+            let editForm = document.getElementById('editForm');
             let btn = document.getElementById('button');
             btn.style.display = "block";
             form.style.display = "none";
+            editForm.style.display = "none";
         },
         async createCategory() {
             try {
@@ -57,16 +68,26 @@ const app = new Vue({
                 console.log(error);
             }
         },
-        async updateCategory(category) {
+        async updateCategory() {
             try {
-                const response = await axios.put('/api/categories/' + category._id);
+                const response = await axios.put('/api/categories/' + this.editCategoryId, {
+                    title: this.editCategoryName,
+                    description: this.editDescription
+                });
                 this.getCategories();
+                this.showButton();
             } catch (error) {
                 console.log(error);
             }
         },
         categoryNum(category) {
             return this.categories.indexOf(category) + 1;
+        },
+        edit(category) {
+            this.editCategoryName = category.title;
+            this.editDescription = category.description;
+            this.editCategoryId = category._id;
+            this.showEditForm();
         }
     },
 });
