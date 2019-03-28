@@ -80,14 +80,19 @@
                     <input v-model="addedDate" placeholder="Date MM-DD">
                     <input v-model="addedAmount" placeholder="Amount">
                     <input v-model="addedDescription" placeholder="Description">
-                    <input v-model="addedCategory" placeholder="Category">
+                    <select v-model="addedCategory" placeholder="Category" >
+                        <option v-for="category in categories">{{category}}</option>
+                    </select>
+                    <!-- <input type v-model="addedCategory" placeholder="Category"> -->
                     <button type="submit">Submit</button>
                 </form>
                 <form class="m-auto" id="editForm" v-on:submit.prevent="updateTransaction">
                     <input v-model="editTransactionDate" placeholder="Date MM-DD">
                     <input v-model="editTransactionAmount" placeholder="Amount">
-                    <input v-model="editDescription" placeholder="Description">
-                    <input v-model="editCategory" placeholder="Category">
+                    <input v-model="editDescription" placeholder="Description">  
+                    <select v-model="editCategory" placeholder="Category" >
+                        <option v-for="category in categories">{{category}}</option>
+                    </select>
                     <button type="submit">Submit</button>
                 </form>
             </div>

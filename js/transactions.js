@@ -12,11 +12,13 @@ const app = new Vue({
         editCategory: '',
         editDescription: '',
         editTransactionId: '',
+        categories: [],
     },
     created() {
         this.showButton();
         this.getTransactions();
         this.calculateBudget();
+        this.getCategories();
     },
     computed: {
         summaryString() {
@@ -63,10 +65,12 @@ const app = new Vue({
         },
 
         showEditForm() {
-            let form = document.getElementById('editForm');
+            let editform = document.getElementById('editForm');
             let btn = document.getElementById('button');
-            form.style.display = "block";
+            let form = document.getElementById('form');
+            editform.style.display = "block";
             btn.style.display = "none";
+            form.style.display = "none";
         },
 
         showButton() {
@@ -131,6 +135,7 @@ const app = new Vue({
                     category: this.editCategory,
                 });
                 this.getTransactions();
+                this.showButton();
             } catch (error) {
                 console.log(error);
             }
@@ -142,6 +147,17 @@ const app = new Vue({
             this.editCategory = transaction.category;
             this.editTransactionId = transaction._id;
             this.showEditForm();
+        },
+
+        async getCategories() {
+            try {
+            let result = await axios.get('/api/categories');
+                this.categories = result.data.map(c => {
+                    return c.title;
+                });
+            } catch (error) {
+                console.log(error);
+            }
         }
     },
 });

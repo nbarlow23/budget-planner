@@ -48,10 +48,12 @@ const app = new Vue({
             btn.style.display = "none";
         },
         showEditForm() {
-            let form = document.getElementById('editForm');
+            let editform = document.getElementById('editForm');
             let btn = document.getElementById('button');
-            form.style.display = "block";
+            let form = document.getElementById('form');
+            editform.style.display = "block";
             btn.style.display = "none";
+            form.style.display = "none";
         },
         showButton() {
             let form = document.getElementById('form');
