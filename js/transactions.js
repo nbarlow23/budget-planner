@@ -7,6 +7,11 @@ const app = new Vue({
         addedDescription: '',
         addedCategory: '',
         budget: 0,
+        editTransactionDate: '',
+        editTransactionAmount: '',
+        editCategory: '',
+        editDescription: '',
+        editTransactionId: '',
     },
     created() {
         this.showButton();
@@ -57,11 +62,20 @@ const app = new Vue({
             btn.style.display = "none";
         },
 
+        showEditForm() {
+            let form = document.getElementById('editForm');
+            let btn = document.getElementById('button');
+            form.style.display = "block";
+            btn.style.display = "none";
+        },
+
         showButton() {
             let form = document.getElementById('form');
+            let editForm = document.getElementById('editForm');
             let btn = document.getElementById('button');
             btn.style.display = "block";
             form.style.display = "none";
+            editForm.style.display = "none";
         },
         
         async createTransaction() {
@@ -108,13 +122,26 @@ const app = new Vue({
                 console.log(error);
             }
         },
-        async updateTransactions(transaction) {
+        async updateTransaction() {
             try {
-                const response = await axios.put('/api/transactions/' + transaction._id);
+                const response = await axios.put('/api/transactions/' + this.editTransactionId, {
+                    date: this.editTransactionDate,
+                    amount: this.editTransactionAmount,
+                    description: this.editDescription,
+                    category: this.editCategory,
+                });
                 this.getTransactions();
             } catch (error) {
                 console.log(error);
             }
         },
+        edit(transaction) {
+            this.editTransactionDate = transaction.date;
+            this.editTransactionAmount = transaction.amount;
+            this.editDescription = transaction.description;
+            this.editCategory = transaction.category;
+            this.editTransactionId = transaction._id;
+            this.showEditForm();
+        }
     },
 });
