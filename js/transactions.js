@@ -6,11 +6,12 @@ const app = new Vue({
         addedAmount: '',
         addedDescription: '',
         addedCategory: '',
-        budget: 1500,
+        budget: 0,
     },
     created() {
         this.showButton();
         this.getTransactions();
+        this.calculateBudget();
     },
     computed: {
         summaryString() {
@@ -88,6 +89,20 @@ const app = new Vue({
             try {
                 let response = await axios.delete('/api/transactions/' + transaction._id);
                 this.getTransactions();
+                return true;
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        async calculateBudget() {
+            try {
+            let response = await axios.get('/api/incomes');
+                let incomes = response.data;
+                let totalBudget = 0;
+                incomes.forEach(income => {
+                    totalBudget += parseFloat(income.amount);
+                });
+                this.budget = totalBudget;
                 return true;
             } catch (error) {
                 console.log(error);
