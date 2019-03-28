@@ -6,6 +6,11 @@ const app = new Vue({
         addedAmount: '',
         addedDescription: '',
         addedCategory: '',
+        editId: '',
+        editDate: '',
+        editAmount: '',
+        editDescription: '',
+        editCategory: '',
     },
     created() {
         this.showButton();
@@ -42,12 +47,19 @@ const app = new Vue({
             form.style.display = "block";
             btn.style.display = "none";
         },
-
+        showEditForm() {
+            let form = document.getElementById('editForm');
+            let btn = document.getElementById('button');
+            form.style.display = "block";
+            btn.style.display = "none";
+        },
         showButton() {
             let form = document.getElementById('form');
+            let editForm = document.getElementById('editForm');
             let btn = document.getElementById('button');
             btn.style.display = "block";
             form.style.display = "none";
+            editForm.style.display = "none";
         },
 
         async createIncome() {
@@ -81,10 +93,24 @@ const app = new Vue({
                 console.log(error);
             }
         },
-        async updateIncome(income) {
+        edit(income) {
+            this.editDate = income.date;
+            this.editAmount = income.amount;
+            this.editDescription = income.description;
+            this.editCategory = income.category;
+            this.editId = income._id;
+            this.showEditForm();
+        },
+        async updateIncome() {
             try {
-                const response = await axios.put('/api/incomes/' + income._id);
+                const response = await axios.put('/api/incomes/' + this.editId, {
+                    date: this.editDate,
+                    description: this.editDescription,
+                    amount: this.editAmount,
+                    category: this.editCategory
+                });
                 this.getIncomes();
+                this.showButton();
             } catch (error) {
                 console.log(error);
             }

@@ -68,6 +68,15 @@ const app = new Vue({
                 console.log(error);
             }
         },
+        categoryNum(category) {
+            return this.categories.indexOf(category) + 1;
+        },
+        edit(category) {
+            this.editCategoryName = category.title;
+            this.editDescription = category.description;
+            this.editCategoryId = category._id;
+            this.showEditForm();
+        },
         async updateCategory() {
             try {
                 const response = await axios.put('/api/categories/' + this.editCategoryId, {
@@ -80,14 +89,5 @@ const app = new Vue({
                 console.log(error);
             }
         },
-        categoryNum(category) {
-            return this.categories.indexOf(category) + 1;
-        },
-        edit(category) {
-            this.editCategoryName = category.title;
-            this.editDescription = category.description;
-            this.editCategoryId = category._id;
-            this.showEditForm();
-        }
     },
 });

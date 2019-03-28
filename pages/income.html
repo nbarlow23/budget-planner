@@ -59,6 +59,8 @@
                         <td>{{income.description}}</td>
                         <td>{{income.category}}</td>
                         <td>
+                            <button type="button" class="btn btn-info"
+                                v-on:click="edit(income)">Edit</button>
                             <button type="button" class="btn btn-danger"
                                 v-on:click="deleteIncome(income)">Delete</button>
                         </td>
@@ -75,6 +77,13 @@
                     <input v-model="addedAmount" placeholder="Amount">
                     <input v-model="addedDescription" placeholder="Description">
                     <input v-model="addedCategory" placeholder="Category">
+                    <button type="submit">Submit</button>
+                </form>
+                <form class="m-auto" id="editForm" v-on:submit.prevent="updateIncome">
+                    <input v-model="editDate" placeholder="Date MM-DD">
+                    <input v-model="editAmount" placeholder="Amount">
+                    <input v-model="editDescription" placeholder="Description">
+                    <input v-model="editCategory" placeholder="Category">
                     <button type="submit">Submit</button>
                 </form>
             </div>
