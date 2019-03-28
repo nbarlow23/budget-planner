@@ -57,6 +57,14 @@ const app = new Vue({
                 console.log(error);
             }
         },
+        async updateCategory(category) {
+            try {
+                const response = await axios.put('/api/categories/' + category._id);
+                this.getCategories();
+            } catch (error) {
+                console.log(error);
+            }
+        },
         categoryNum(category) {
             return this.categories.indexOf(category) + 1;
         }

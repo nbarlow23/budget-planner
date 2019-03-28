@@ -80,6 +80,14 @@ const app = new Vue({
             } catch (error) {
                 console.log(error);
             }
-        }
+        },
+        async updateIncome(income) {
+            try {
+                const response = await axios.put('/api/incomes/' + income._id);
+                this.getIncomes();
+            } catch (error) {
+                console.log(error);
+            }
+        },
    },
 });

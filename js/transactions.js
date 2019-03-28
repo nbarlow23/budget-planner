@@ -107,6 +107,14 @@ const app = new Vue({
             } catch (error) {
                 console.log(error);
             }
-        }
+        },
+        async updateTransactions(transaction) {
+            try {
+                const response = await axios.put('/api/transactions/' + transaction._id);
+                this.getTransactions();
+            } catch (error) {
+                console.log(error);
+            }
+        },
     },
 });
