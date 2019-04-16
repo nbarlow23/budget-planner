@@ -41,6 +41,10 @@ export default {
     expenses() {
       return this.$store.state.totalExpenses;
     }
+  },
+  async created() {
+    await this.$store.dispatch('getTransactions');
+    await this.$store.dispatch('getIncomes');
   }
 };
 </script>

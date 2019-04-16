@@ -18,7 +18,7 @@
               <td>{{category.title}}</td>
               <td>{{category.description}}</td>
               <td>
-                <button type="button" class="btn btn-info" v-on:click="edit(category)">Edit</button>
+                <button type="button" class="btn btn-info mr-1" v-on:click="edit(category)">Edit</button>
                 <button
                   type="button"
                   class="btn btn-danger"

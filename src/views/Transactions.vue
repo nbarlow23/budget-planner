@@ -26,7 +26,7 @@
             <td>{{transaction.description}}</td>
             <td>{{transaction.category}}</td>
             <td>
-              <button type="button" class="btn btn-info" v-on:click="edit(transaction)">Edit</button>
+              <button type="button" class="btn btn-info mr-1" v-on:click="edit(transaction)">Edit</button>
               <button
                 type="button"
                 class="btn btn-danger"
@@ -59,7 +59,7 @@
           <input v-model="addedAmount" placeholder="Amount">
           <input v-model="addedDescription" placeholder="Description">
           <select v-model="addedCategory" placeholder="Category">
-            <option v-bind:key="category._id" v-for="category in categories">{{category}}</option>
+            <option v-bind:key="category._id" v-for="category in categories">{{category.title}}</option>
           </select>
           <button type="submit">Submit</button>
         </form>
@@ -73,7 +73,7 @@
           <input v-model="editTransactionAmount" placeholder="Amount">
           <input v-model="editDescription" placeholder="Description">
           <select v-model="editCategory" placeholder="Category">
-            <option v-bind:key="category._id" v-for="category in categories">{{category}}</option>
+            <option v-bind:key="category._id" v-for="category in categories">{{category.title}}</option>
           </select>
           <button type="submit">Submit</button>
         </form>
@@ -102,10 +102,10 @@ export default {
       showButton: true
     };
   },
-  created() {
-    this.getTransactions();
-    this.calculateBudget();
-    this.getCategories();
+  async created() {
+    await this.getTransactions();
+    await this.calculateBudget();
+    await this.getCategories();
   },
   computed: {
     summaryString() {
@@ -145,11 +145,7 @@ export default {
     },
 
     budgetSummary() {
-      let total = 0;
-      this.transactions.forEach(t => {
-        total += parseFloat(t.amount);
-      });
-      return (this.budget - total).toFixed(2);
+      return (this.$store.state.totalIncome - this.$store.state.totalExpenses).toFixed(2);
     },
 
     onClickNewTransaction() {
@@ -194,13 +190,7 @@ export default {
     },
     async calculateBudget() {
       try {
-        let response = await axios.get("/api/incomes");
-        let incomes = response.data;
-        let totalBudget = 0;
-        incomes.forEach(income => {
-          totalBudget += parseFloat(income.amount);
-        });
-        this.budget = totalBudget;
+        await this.$store.dispatch('getIncomes');
         return true;
       } catch (error) {
         console.log(error);

@@ -24,7 +24,7 @@
               <td>{{income.description}}</td>
               <td>{{income.category}}</td>
               <td>
-                <button type="button" class="btn btn-info" v-on:click="edit(income)">Edit</button>
+                <button type="button" class="btn btn-info mr-1" v-on:click="edit(income)">Edit</button>
                 <button
                   type="button"
                   class="btn btn-danger"

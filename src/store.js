@@ -30,7 +30,7 @@ export default new Vuex.Store({
       state.totalIncome = income;
     },
     setTotalExpenses(state, expenses) {
-      state.expenses = expenses;
+      state.totalExpenses = expenses;
     }
   },
   actions: {
@@ -96,7 +96,7 @@ export default new Vuex.Store({
         this.state.transactions.forEach(transaction => {
           totalExpenses += Number(transaction.amount);
         });
-        context.commit("setTotalIncome", totalExpenses);
+        await context.commit("setTotalExpenses", totalExpenses);
         return "";
       } catch (error) {
         return "";
