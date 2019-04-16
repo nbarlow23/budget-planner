@@ -7,7 +7,6 @@
       <router-link to="/categories">Spending Categories</router-link>
       <v-if></v-if>
     </div>
-    <router-view />
   </div>
 </template>
 
