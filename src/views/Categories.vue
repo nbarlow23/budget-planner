@@ -33,6 +33,7 @@
         <div class="row">
           <button
             id="button"
+            v-if="showButton"
             v-on:click="onClickNewCategory"
             type="button"
             class="btn bg-prim center"
@@ -40,12 +41,12 @@
             New
             Category
           </button>
-          <form class="m-auto" id="form" v-on:submit.prevent="createCategory">
+          <form v-if="showForm" class="m-auto" id="form" v-on:submit.prevent="createCategory">
             <input v-model="addedCategoryName" placeholder="Category">
             <input v-model="addedDescription" placeholder="Description">
             <button type="submit">Submit</button>
           </form>
-          <form class="m-auto" id="editForm" v-on:submit.prevent="updateCategory">
+          <form v-if="showEditForm" class="m-auto" id="editForm" v-on:submit.prevent="updateCategory">
             <input v-model="editCategoryName" placeholder="Category">
             <input v-model="editDescription" placeholder="Description">
             <button type="submit">Submit</button>
@@ -85,21 +86,8 @@ export default {
       }
     },
     onClickNewCategory() {
-      this.showForm();
-    },
-    showForm() {
       this.showButton = false;
       this.showForm = true;
-    },
-    showEditForm() {
-      this.showButton = false;
-      this.showEditForm = true;
-      this.showForm = false;
-    },
-    showButton() {
-      this.showButton = true;
-      this.showEditForm = false;
-      this.showForm = false;
     },
     async createCategory() {
       try {
@@ -109,7 +97,9 @@ export default {
         });
         this.addedCategoryName = "";
         this.addedDescription = "";
-        this.showButton();
+        this.showButton = true;
+        this.showEditForm = false;
+        this.showForm = false;
         this.getCategories();
       } catch (error) {
         console.log(error);
@@ -131,7 +121,9 @@ export default {
       this.editCategoryName = category.title;
       this.editDescription = category.description;
       this.editCategoryId = category._id;
-      this.showEditForm();
+      this.showButton = false;
+      this.showEditForm = true;
+      this.showForm = false;
     },
     async updateCategory() {
       try {
@@ -143,7 +135,9 @@ export default {
           }
         );
         this.getCategories();
-        this.showButton();
+        this.showButton = true;
+        this.showEditForm = false;
+        this.showForm = false;
       } catch (error) {
         console.log(error);
       }

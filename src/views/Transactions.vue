@@ -230,9 +230,6 @@ export default {
     async getCategories() {
       try {
         let result = await this.$store.dispatch("getCategories");
-        this.categories = result.data.map(c => {
-          return c.title;
-        });
       } catch (error) {
         console.log(error);
       }
