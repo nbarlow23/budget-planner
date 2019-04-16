@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-show="user">
     <h1 class="pt-4 px-5">Track Your Income</h1>
     <div class="container-fluid">
       <h3 class="summary text-right">
@@ -98,7 +98,29 @@ export default {
       return this.$store.state.incomes;
     },
     totalIncome() {
+<<<<<<< HEAD
       return this.$store.state.totalIncome;
+=======
+      let total = 0;
+      this.incomes.forEach(i => {
+        total += parseFloat(i.amount);
+      });
+      return total;
+    },
+    user() {
+      return this.$store.state.user;
+    },
+  },
+  methods: {
+    async getIncomes() {
+      try {
+        let response = await this.$store.dispatch("getIncomes");
+
+        return true;
+      } catch (error) {
+        console.log(error);
+      }
+>>>>>>> 5f2931c2a3beb10bd003bb8cfefe1077f88f9b4a
     },
 
   },

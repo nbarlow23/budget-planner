@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <div v-show="user" class="container-fluid">
     <h4 class="text-center">
       Budget: ${{budget}}, Total Transactions: ${{totalTransactions}}.
       <span
@@ -124,7 +124,10 @@ export default {
     },
     categories() {
       return this.$store.state.categories;
-    }
+    },
+    user() {
+      return this.$store.state.user;
+    },
   },
 
   methods: {

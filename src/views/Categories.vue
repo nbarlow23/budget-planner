@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-show="user">
     <h1 class="pt-4 px-5">Manage Your Spending Categories</h1>
     <div class="container-fluid pb-5">
       <div class="table-responsive mt-5">
@@ -74,6 +74,11 @@ export default {
   },
   created() {
     this.getCategories();
+  },
+  computed: {
+    user() {
+      return this.$store.state.user;
+    },
   },
   methods: {
     async getCategories() {
