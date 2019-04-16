@@ -2,7 +2,7 @@
   <div v-show="user" class="container-fluid">
     <h1 class="pt-4 px-5">Track Your Transactions</h1>
     <h4 class="text-center">
-      Budget: ${{budget}}, Total Transactions: ${{totalTransactions}}.
+      Budget: ${{totalIncome}}, Total Transactions: ${{totalTransactions}}.
       <span
         v-bind:class="{ incomeColor: budgetSummary() >= 0, 
                 dangerColor: budgetSummary() < 0}"
@@ -119,6 +119,9 @@ export default {
     },
     totalTransactions() {
       return this.$store.state.totalExpenses;
+    },
+    totalIncome() {
+      return this.$store.state.totalIncome;
     },
     transactions() {
       return this.$store.state.transactions;
