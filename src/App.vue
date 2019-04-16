@@ -2,7 +2,10 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/transactions">Transactions</router-link>
+      <router-link to="/incomes">Income</router-link>
+      <router-link to="/categories">Spending Categories</router-link>
+      <v-if></v-if>
     </div>
     <router-view />
   </div>
