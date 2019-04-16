@@ -140,7 +140,7 @@ export default new Vuex.Store({
 
     async getCategories(context) {
       try {
-        let response = await axios.get("/api/budget/catgories");
+        let response = await axios.get("/api/budget/categories");
         context.commit("setCategories", response.data);
         return "";
       } catch (error) {

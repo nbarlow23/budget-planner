@@ -61,7 +61,6 @@
 export default {
   data() {
     return {
-      categories: [],
       addedCategoryName: "",
       addedDescription: "",
       editCategoryName: "",
@@ -72,56 +71,55 @@ export default {
       showButton: true
     };
   },
-  created() {
-    this.getCategories();
+  async created() {
+    await this.$store.dispatch("getUser");
+    await this.$store.dispatch("getCategories")
   },
   computed: {
     user() {
       return this.$store.state.user;
     },
+    categories() {
+      return this.$store.state.categories;
+    }
   },
   methods: {
-    async getCategories() {
-      try {
-        let response = await axios.get("/api/categories");
-        this.categories = response.data;
-        return true;
-      } catch (error) {
-        console.log(error);
-      }
-    },
     onClickNewCategory() {
       this.showButton = false;
       this.showForm = true;
     },
+
     async createCategory() {
       try {
-        await axios.post("/api/categories", {
+        await this.$store.dispatch("createCategory", {
           title: this.addedCategoryName,
           description: this.addedDescription
         });
+        await this.$store.dispatch("getCategories");
         this.addedCategoryName = "";
         this.addedDescription = "";
         this.showButton = true;
         this.showEditForm = false;
         this.showForm = false;
-        this.getCategories();
       } catch (error) {
         console.log(error);
       }
     },
+
     async deleteCategory(category) {
       try {
-        let response = await axios.delete("/api/categories/" + category._id);
-        this.getCategories();
+        let response = await this.$store.dispatch("deleteCategory", category._id);
+        await this.$store.dispatch("getCategories");
         return true;
       } catch (error) {
         console.log(error);
       }
     },
+
     categoryNum(category) {
       return this.categories.indexOf(category) + 1;
     },
+
     edit(category) {
       this.editCategoryName = category.title;
       this.editDescription = category.description;
@@ -130,16 +128,15 @@ export default {
       this.showEditForm = true;
       this.showForm = false;
     },
+
     async updateCategory() {
       try {
-        const response = await axios.put(
-          "/api/categories/" + this.editCategoryId,
-          {
-            title: this.editCategoryName,
-            description: this.editDescription
-          }
-        );
-        this.getCategories();
+        const response = await this.$store.dispatch("updateCategory", {
+          id: this.editCategoryId,
+          title: this.editCategoryName,
+          description: this.editDescription
+        });
+        await this.$store.dispatch("getCategories");
         this.showButton = true;
         this.showEditForm = false;
         this.showForm = false;
@@ -152,5 +149,100 @@ export default {
 </script>
 
 <style>
+
+img {
+    width: 100%;
+    /* 100% of the container it's in*/
+}
+
+.bg-prim {
+    background-color: #42C98F;
+}
+
+.btn-primary {
+    background-color: #42C98F;
+}
+
+.btn-info {
+    background-color: #28B0AC;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.summary {
+  margin-right: 15%;
+}
+
+.visuals {
+  display: grid;
+  grid-template: auto auto auto auto auto / 1fr 1fr 1fr;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+h1, h2, h3, h4 {
+  padding: 15px;
+}
+.table {
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+ table th {
+    text-align: center;
+ }
+
+.visuals {
+    display: grid;
+    grid-template: auto auto auto auto auto / 1fr 1fr 1fr;
+    grid-column-gap: 15px;
+    grid-row-gap: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.overview {
+    display: flex;
+}
+
+income,
+expenses {
+    flex: 1;
+}
+
+income h3, expenses h3 {
+  text-align: center;
+  padding: 15px;
+}
+
+income img, expenses img {
+  max-width: 500px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.incomeColor {
+  color: #149945 ;
+}
+
+.dangerColor {
+  color: #E52528;
+}
+
+#incomeAmount {
+  text-align: center;
+}
+
+#expensesAmount {
+  text-align: center;
+}
+
 </style>
 
