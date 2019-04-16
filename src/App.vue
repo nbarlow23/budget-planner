@@ -1,15 +1,36 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
+      <router-link to="/">Home</router-link>|
       <router-link to="/transactions">Transactions</router-link>
       <router-link to="/incomes">Income</router-link>
       <router-link to="/categories">Spending Categories</router-link>
-      <v-if></v-if>
+      <router-link to="/" @click="logout" v-if="user">Logout</router-link>
     </div>
-    <router-view />
+    <router-view/>
   </div>
 </template>
+
+<script>
+export default {
+  data() {},
+  computed: {
+    user() {
+      return this.$store.state.user;
+    }
+  },
+  methods: {
+    async logout() {
+      try {
+        this.error = await this.$store.dispatch("logout");
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+};
+</script>
+
 
 <style>
 #app {
