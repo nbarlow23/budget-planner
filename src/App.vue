@@ -1,19 +1,47 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link>|
-      <router-link to="/transactions">Transactions</router-link>
-      <router-link to="/incomes">Income</router-link>
-      <router-link to="/categories">Spending Categories</router-link>
-      <router-link to="/" @click="logout" v-if="user">Logout</router-link>
-    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-prim">
+      <router-link class="navbar-brand" to="/">MoneyTracker v260</router-link>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <router-link class="nav-link" to="/">Home</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/transactions">Transactions</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/incomes">Income</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/categories">Spending Categories</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link v-if="user" to="/" @click="logout">Logout</router-link>
+          </li>
+        </ul>
+      </div>
+    </nav>
     <router-view/>
   </div>
 </template>
 
 <script>
 export default {
-  data() {},
+  data() {
+    return {};
+  },
   computed: {
     user() {
       return this.$store.state.user;
@@ -42,6 +70,10 @@ export default {
 }
 #nav {
   padding: 30px;
+}
+
+.bg-prim {
+  background: #42c98f;
 }
 
 #nav a {
