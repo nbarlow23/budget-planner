@@ -1,5 +1,6 @@
 <template>
   <div v-show="user" class="container-fluid">
+    <h1 class="pt-4 px-5">Track Your Transactions</h1>
     <h4 class="text-center">
       Budget: ${{budget}}, Total Transactions: ${{totalTransactions}}.
       <span
