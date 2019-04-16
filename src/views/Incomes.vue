@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-show="user">
     <h1 class="pt-4 px-5">Track Your Income</h1>
     <div class="container-fluid">
       <h3 class="summary text-right">
@@ -96,7 +96,10 @@ export default {
         total += parseFloat(i.amount);
       });
       return total;
-    }
+    },
+    user() {
+      return this.$store.state.user;
+    },
   },
   methods: {
     async getIncomes() {
