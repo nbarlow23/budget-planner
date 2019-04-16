@@ -10,8 +10,8 @@ export default new Vuex.Store({
     transactions: [],
     incomes: [],
     categories: [],
-    totalIncome: null,
-    totalExpenses: null
+    totalIncome: 0,
+    totalExpenses: 0
   },
   mutations: {
     setUser(state, user) {
@@ -76,7 +76,7 @@ export default new Vuex.Store({
 
     async createTransaction(context, data) {
       try {
-        await axios.post("/api/transactions", {
+        await axios.post("/api/budget/transactions", {
           date: data.date,
           amount: data.amount,
           category: data.category,
@@ -90,7 +90,7 @@ export default new Vuex.Store({
 
     async getTransactions(context) {
       try {
-        let response = await axios.get("/api/transactions");
+        let response = await axios.get("/api/budget/transactions");
         context.commit("setTransactions", response.data);
         let totalExpenses = 0;
         this.state.transactions.forEach(transaction => {
@@ -105,7 +105,7 @@ export default new Vuex.Store({
 
     async deleteTransaction(context, id) {
       try {
-        await axios.delete("/api/transactions" + id);
+        await axios.delete("/api/budget/transactions/" + id);
         return "";
       } catch (error) {
         return error.response.data.message;
@@ -114,7 +114,7 @@ export default new Vuex.Store({
 
     async updateTransaction(context, data) {
       try {
-        await axios.put("/api/transactions/" + data.id, {
+        await axios.put("/api/budget/transactions/" + data.id, {
           date: data.date,
           amount: data.amount,
           category: data.category,
@@ -128,7 +128,7 @@ export default new Vuex.Store({
 
     async createCategory(context, data) {
       try {
-        await axios.post("/api/categories", {
+        await axios.post("/api/budget/categories", {
           title: data.title,
           description: data.description
         });
@@ -140,7 +140,7 @@ export default new Vuex.Store({
 
     async getCategories(context) {
       try {
-        let response = await axios.get("/api/catgories");
+        let response = await axios.get("/api/budget/catgories");
         context.commit("setCategories", response.data);
         return "";
       } catch (error) {
@@ -150,7 +150,7 @@ export default new Vuex.Store({
 
     async deleteCategory(context, id) {
       try {
-        await axios.delete("/api/categories" + id);
+        await axios.delete("/api/budget/categories/" + id);
         return "";
       } catch (error) {
         return error.response.data.message;
@@ -159,7 +159,7 @@ export default new Vuex.Store({
 
     async updateCategory(context, data) {
       try {
-        await axios.put("/api/categories/" + data.id, {
+        await axios.put("/api/budget/categories/" + data.id, {
           title: data.title,
           description: data.description
         });
@@ -171,7 +171,7 @@ export default new Vuex.Store({
 
     async createIncome(context, data) {
       try {
-        await axios.post("/api/incomes", {
+        await axios.post("/api/budget/incomes", {
           date: data.date,
           amount: data.amount,
           category: data.category,
@@ -185,7 +185,7 @@ export default new Vuex.Store({
 
     async getIncomes(context) {
       try {
-        let response = await axios.get("/api/incomes");
+        let response = await axios.get("/api/budget/incomes");
         context.commit("setIncomes", response.data);
         let totalIncome = 0;
         this.state.incomes.forEach(income => {
@@ -200,7 +200,7 @@ export default new Vuex.Store({
 
     async deleteIncome(context, id) {
       try {
-        await axios.delete("/api/incomes" + id);
+        await axios.delete("/api/budget/incomes/" + id);
         return "";
       } catch (error) {
         return error.response.data.message;
@@ -209,7 +209,7 @@ export default new Vuex.Store({
 
     async updateIncome(context, data) {
       try {
-        await axios.put("/api/incomes/" + data.id, {
+        await axios.put("/api/budget/incomes/" + data.id, {
           date: data.date,
           amount: data.amount,
           category: data.category,

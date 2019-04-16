@@ -69,9 +69,9 @@
 
 <script>
 export default {
+  name: "Incomes",
   data() {
     return {
-      incomes: [],
       addedDate: "",
       addedAmount: "",
       addedDescription: "",
@@ -86,29 +86,23 @@ export default {
       showButton: true
     };
   },
-  created() {
-    this.getIncomes();
+  async created() {
+    await this.$store.dispatch("getUser");
+    await this.$store.dispatch("getIncomes");
   },
   computed: {
+    user() {
+      return this.$store.state.user;
+    },
+    incomes() {
+      return this.$store.state.incomes;
+    },
     totalIncome() {
-      let total = 0;
-      this.incomes.forEach(i => {
-        total += parseFloat(i.amount);
-      });
-      return total;
-    }
-  },
-  methods: {
-    async getIncomes() {
-      try {
-        let response = await this.$store.dispatch("getIncomes");
-
-        return true;
-      } catch (error) {
-        console.log(error);
-      }
+      return this.$store.state.totalIncome;
     },
 
+  },
+  methods: {
     onClickNewIncome() {
       this.showForm = true;
       this.showButton = false;
@@ -119,12 +113,13 @@ export default {
         this.addedAmount = this.addedAmount.substr(1);
       }
       try {
-        await axios.post("/api/incomes", {
+        await this.$store.dispatch("createIncome", {
           date: this.addedDate,
           amount: this.addedAmount,
           description: this.addedDescription,
           category: this.addedCategory
         });
+        await this.$store.dispatch("getIncomes");
         this.addedDate = "";
         this.addedAmount = "";
         this.addedDescription = "";
@@ -132,7 +127,6 @@ export default {
         this.showButton = true;
         this.showEditForm = false;
         this.showForm = false;
-        this.getIncomes();
       } catch (error) {
         console.log(error);
       }
@@ -140,13 +134,14 @@ export default {
 
     async deleteIncome(income) {
       try {
-        let response = await axios.delete("/api/incomes/" + income._id);
-        this.getIncomes();
+        let response = await this.$store.dispatch("deleteIncome", income._id);        
+        await this.$store.dispatch("getIncomes");
         return true;
       } catch (error) {
         console.log(error);
       }
     },
+
     edit(income) {
       this.editDate = income.date;
       this.editAmount = income.amount;
@@ -157,15 +152,17 @@ export default {
       this.showForm = false;
       this.showButton = false;
     },
+
     async updateIncome() {
       try {
-        const response = await axios.put("/api/incomes/" + this.editId, {
+        const response = await this.$store.dispatch("updateIncome", {
+          id: this.editId,
           date: this.editDate,
           description: this.editDescription,
           amount: this.editAmount,
           category: this.editCategory
         });
-        this.getIncomes();
+        await this.$store.dispatch("getIncomes");
         this.showButton = true;
         this.showEditForm = false;
         this.showForm = false;
@@ -173,9 +170,104 @@ export default {
         console.log(error);
       }
     }
+
   }
 };
 </script>
 
 <style>
+img {
+    width: 100%;
+    /* 100% of the container it's in*/
+}
+
+.bg-prim {
+    background-color: #42C98F;
+}
+
+.btn-primary {
+    background-color: #42C98F;
+}
+
+.btn-info {
+    background-color: #28B0AC;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.summary {
+  margin-right: 15%;
+}
+
+.visuals {
+  display: grid;
+  grid-template: auto auto auto auto auto / 1fr 1fr 1fr;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+h1, h2, h3, h4 {
+  padding: 15px;
+}
+.table {
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+ table th {
+    text-align: center;
+ }
+
+.visuals {
+    display: grid;
+    grid-template: auto auto auto auto auto / 1fr 1fr 1fr;
+    grid-column-gap: 15px;
+    grid-row-gap: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.overview {
+    display: flex;
+}
+
+income,
+expenses {
+    flex: 1;
+}
+
+income h3, expenses h3 {
+  text-align: center;
+  padding: 15px;
+}
+
+income img, expenses img {
+  max-width: 500px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.incomeColor {
+  color: #149945 ;
+}
+
+.dangerColor {
+  color: #E52528;
+}
+
+#incomeAmount {
+  text-align: center;
+}
+
+#expensesAmount {
+  text-align: center;
+}
+
 </style>
