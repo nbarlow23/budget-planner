@@ -48,7 +48,12 @@
           New
           Transaction
         </button>
-        <form v-if="showCreateForm" class="m-auto" id="form" v-on:submit.prevent="createTransaction">
+        <form
+          v-if="showCreateForm"
+          class="m-auto"
+          id="form"
+          v-on:submit.prevent="createTransaction"
+        >
           <input v-model="addedDate" placeholder="Date MM-DD">
           <input v-model="addedAmount" placeholder="Amount">
           <input v-model="addedDescription" placeholder="Description">
@@ -57,7 +62,12 @@
           </select>
           <button type="submit">Submit</button>
         </form>
-        <form v-if="showEditForm" class="m-auto" id="editForm" v-on:submit.prevent="updateTransaction">
+        <form
+          v-if="showEditForm"
+          class="m-auto"
+          id="editForm"
+          v-on:submit.prevent="updateTransaction"
+        >
           <input v-model="editTransactionDate" placeholder="Date MM-DD">
           <input v-model="editTransactionAmount" placeholder="Amount">
           <input v-model="editDescription" placeholder="Description">
@@ -88,7 +98,7 @@ export default {
       editTransactionId: "",
       showCreateForm: false,
       showEditForm: false,
-      showButton: true,
+      showButton: true
     };
   },
   created() {
@@ -106,8 +116,11 @@ export default {
         " budget!"
       );
     },
-    transactions() {
+    totalTransactions() {
       return this.$store.state.totalExpenses;
+    },
+    transactions() {
+      return this.$store.state.transactions;
     },
     categories() {
       return this.$store.state.categories;
@@ -118,7 +131,6 @@ export default {
     async getTransactions() {
       try {
         const response = await this.$store.dispatch("getTransactions");
-        this.transactions = response.data;
         return true;
       } catch (error) {
         console.log(error);
@@ -134,24 +146,8 @@ export default {
     },
 
     onClickNewTransaction() {
-      this.showForm();
-    },
-
-    showForm() {
       this.showButton = false;
       this.showCreateForm = true;
-    },
-
-    showEditForm() {
-      this.showEditForm = true;
-      this.showCreateForm = false;
-      this.showButton = false;
-    },
-
-    showButton() {
-      this.showButton = true;
-      this.showEditForm = false;
-      this.showCreateForm = false;
     },
 
     async createTransaction() {
@@ -169,7 +165,9 @@ export default {
         this.addedAmount = "";
         this.addedDescription = "";
         this.addedCategory = "";
-        this.showButton();
+        this.showButton = true;
+        this.showEditForm = false;
+        this.showCreateForm = false;
         this.getTransactions();
       } catch (error) {
         console.log(error);
@@ -211,7 +209,9 @@ export default {
           category: this.editCategory
         });
         this.getTransactions();
-        this.showButton();
+        this.showButton = true;
+        this.showCreateForm = false;
+        this.showEditForm = false;
       } catch (error) {
         console.log(error);
       }
@@ -222,7 +222,9 @@ export default {
       this.editDescription = transaction.description;
       this.editCategory = transaction.category;
       this.editTransactionId = transaction._id;
-      this.showEditForm();
+      this.showEditForm = true;
+      this.showCreateForm = false;
+      this.showButton = false;
     },
 
     async getCategories() {

@@ -47,6 +47,9 @@ export default {
       return this.$store.state.user;
     }
   },
+  async created() {
+    await this.$store.dispatch('getUser');
+  },
   methods: {
     async logout() {
       try {
