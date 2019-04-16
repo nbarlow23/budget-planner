@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-expand-lg navbar-light bg-prim">
+    <nav v-if="user" class="navbar navbar-expand-lg navbar-light bg-prim">
       <router-link class="navbar-brand" to="/">MoneyTracker v260</router-link>
       <button
         class="navbar-toggler"
@@ -28,7 +28,7 @@
             <router-link class="nav-link" to="/categories">Spending Categories</router-link>
           </li>
           <li class="nav-item">
-            <router-link v-if="user" to="/" @click="logout">Logout</router-link>
+            <div @click="logout">Logout</div>
           </li>
         </ul>
       </div>

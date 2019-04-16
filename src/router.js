@@ -1,7 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
-import Register from "./views/Register.vue";
 import Transactions from "./views/Transactions.vue";
 import Incomes from "./views/Incomes.vue";
 import Categories from "./views/Categories.vue";
@@ -23,7 +22,7 @@ export default new Router({
       component: Transactions
     },
     {
-      path: "/icnomes",
+      path: "/incomes",
       name: "incomes",
       component: Incomes
     },
@@ -32,10 +31,5 @@ export default new Router({
       name: "categories",
       component: Categories
     },
-    {
-      path: "/register",
-      name: "register",
-      component: Register
-    }
   ]
 });
