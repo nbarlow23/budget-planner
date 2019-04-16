@@ -9,7 +9,9 @@ export default new Vuex.Store({
     user: null,
     transactions: [],
     incomes: [],
-    categories: []
+    categories: [],
+    totalIncome: null,
+    totalExpenses: null
   },
   mutations: {
     setUser(state, user) {
@@ -23,6 +25,12 @@ export default new Vuex.Store({
     },
     setCategories(state, categories) {
       state.categories = categories;
+    },
+    setTotalIncome(state, income) {
+      state.totalIncome = income;
+    },
+    setTotalExpenses(state, expenses) {
+      state.expenses = expenses;
     }
   },
   actions: {
@@ -35,6 +43,7 @@ export default new Vuex.Store({
         return error.response.data.message;
       }
     },
+
     async login(context, data) {
       try {
         let response = await axios.post("/api/users/login", data);
@@ -44,6 +53,7 @@ export default new Vuex.Store({
         return error.response.data.message;
       }
     },
+
     async logout(context) {
       try {
         await axios.delete("/api/users");
@@ -53,6 +63,7 @@ export default new Vuex.Store({
         return error.response.data.message;
       }
     },
+
     async getUser(context) {
       try {
         let response = await axios.get("/api/users");
@@ -60,6 +71,153 @@ export default new Vuex.Store({
         return "";
       } catch (error) {
         return "";
+      }
+    },
+
+    async createTransaction(context, data) {
+      try {
+        await axios.post("/api/transactions", {
+          date: data.date,
+          amount: data.amount,
+          category: data.category,
+          description: data.description
+        });
+        return "";
+      } catch (error) {
+        return error.response.data.message;
+      }
+    },
+
+    async getTransactions(context) {
+      try {
+        let response = await axios.get("/api/transactions");
+        context.commit("setTransactions", response.data);
+        let totalExpenses = 0;
+        this.state.transactions.forEach(transaction => {
+          totalExpenses += Number(transaction.amount);
+        });
+        context.commit("setTotalIncome", totalExpenses);
+        return "";
+      } catch (error) {
+        return "";
+      }
+    },
+
+    async deleteTransaction(context, id) {
+      try {
+        await axios.delete("/api/transactions" + id);
+        return "";
+      } catch (error) {
+        return error.response.data.message;
+      }
+    },
+
+    async updateTransaction(context, data) {
+      try {
+        await axios.put("/api/transactions/" + data.id, {
+          date: data.date,
+          amount: data.amount,
+          category: data.category,
+          description: data.description
+        });
+        return "";
+      } catch (error) {
+        return error.response.data.message;
+      }
+    },
+
+    async createCategory(context, data) {
+      try {
+        await axios.post("/api/categories", {
+          title: data.title,
+          description: data.description
+        });
+        return "";
+      } catch (error) {
+        return error.response.data.message;
+      }
+    },
+
+    async getCategories(context) {
+      try {
+        let response = await axios.get("/api/catgories");
+        context.commit("setCategories", response.data);
+        return "";
+      } catch (error) {
+        return "";
+      }
+    },
+
+    async deleteCategory(context, id) {
+      try {
+        await axios.delete("/api/categories" + id);
+        return "";
+      } catch (error) {
+        return error.response.data.message;
+      }
+    },
+
+    async updateCategory(context, data) {
+      try {
+        await axios.put("/api/categories/" + data.id, {
+          title: data.title,
+          description: data.description
+        });
+        return "";
+      } catch (error) {
+        return error.response.data.message;
+      }
+    },
+
+    async createIncome(context, data) {
+      try {
+        await axios.post("/api/incomes", {
+          date: data.date,
+          amount: data.amount,
+          category: data.category,
+          description: data.description
+        });
+        return "";
+      } catch (error) {
+        return error.response.data.message;
+      }
+    },
+
+    async getIncomes(context) {
+      try {
+        let response = await axios.get("/api/incomes");
+        context.commit("setIncomes", response.data);
+        let totalIncome = 0;
+        this.state.incomes.forEach(income => {
+          totalIncome += Number(income.amount);
+        });
+        context.commit("setTotalIncome", totalIncome);
+        return "";
+      } catch (error) {
+        return "";
+      }
+    },
+
+    async deleteIncome(context, id) {
+      try {
+        await axios.delete("/api/incomes" + id);
+        return "";
+      } catch (error) {
+        return error.response.data.message;
+      }
+    },
+
+    async updateIncome(context, data) {
+      try {
+        await axios.put("/api/incomes/" + data.id, {
+          date: data.date,
+          amount: data.amount,
+          category: data.category,
+          description: data.description
+        });
+        return "";
+      } catch (error) {
+        return error.response.data.message;
       }
     }
   }
