@@ -25,4 +25,7 @@ app.use("/api/users", users.routes);
 const budget = require("./budget.js");
 app.use("/api/budget", budget.routes);
 
+const auth = require("./auth.js");
+app.use("/api/auth", auth.routes);
+
 app.listen(3005, () => console.log("Server listening on port 3005!"));
