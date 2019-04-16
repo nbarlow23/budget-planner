@@ -15,16 +15,16 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-          <li class="nav-item">
+          <li v-bind:class="{ 'active ': isHome}" class="nav-item">
             <router-link class="nav-link" to="/">Home</router-link>
           </li>
-          <li class="nav-item">
+          <li v-bind:class="{ 'active ': isTransactions}" class="nav-item">
             <router-link class="nav-link" to="/transactions">Transactions</router-link>
           </li>
-          <li class="nav-item">
+          <li v-bind:class="{ 'active ': isIncomes}" class="nav-item">
             <router-link class="nav-link" to="/incomes">Income</router-link>
           </li>
-          <li class="nav-item">
+          <li v-bind:class="{ 'active ': isCategories}" class="nav-item">
             <router-link class="nav-link" to="/categories">Spending Categories</router-link>
           </li>
           <li class="nav-item">
@@ -39,16 +39,26 @@
 
 <script>
 export default {
-  data() {
-    return {};
-  },
   computed: {
     user() {
       return this.$store.state.user;
+    },
+    isHome() {
+      const path = this.$route.path;
+      return path === "/";
+    },
+    isTransactions() {
+      return this.$route.path === "/transactions";
+    },
+    isCategories() {
+      return this.$route.path === "/categories";
+    },
+    isIncomes() {
+      return this.$route.path === "/incomes";
     }
   },
   async created() {
-    await this.$store.dispatch('getUser');
+    await this.$store.dispatch("getUser");
   },
   methods: {
     async logout() {
