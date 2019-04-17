@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Register for an account</h1>
-    <form class="pure-form pure-form-aligned">
+    <form class="pure-form pure-form-aligned mw-50">
       <fieldset>
         <p class="pure-form-message-inline">All fields are required.</p>
 
@@ -15,11 +15,13 @@
           <input v-model="password" type="password" placeholder="Password">
         </div>
 
-        <div class="pure-controls">
-          <button class="pure-button pure-button-primary" @click.prevent="login">Login</button>
-        </div>
-        <div class="pure-controls">
-          <button class="pure-button pure-button-primary" @click.prevent="register">Register</button>
+        <div class="d-flex justify-content-center mt-5">
+          <div class="mx-2">
+            <button class="pure-button pure-button-primary" @click.prevent="login">Login</button>
+          </div>
+          <div class="mx-2">
+            <button class="pure-button pure-button-primary" @click.prevent="register">Register</button>
+          </div>
         </div>
       </fieldset>
     </form>
