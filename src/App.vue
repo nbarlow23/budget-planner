@@ -28,7 +28,7 @@
             <router-link class="nav-link" to="/categories">Spending Categories</router-link>
           </li>
           <li class="nav-item">
-            <div @click="logout">Logout</div>
+            <div @click="logout" class="clickable nav-link">Logout</div>
           </li>
         </ul>
       </div>
@@ -64,6 +64,7 @@ export default {
     async logout() {
       try {
         this.error = await this.$store.dispatch("logout");
+        this.$router.push({name: 'home'});
       } catch (error) {
         console.log(error);
       }
@@ -96,5 +97,9 @@ export default {
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+.clickable {
+  cursor: pointer;
 }
 </style>
