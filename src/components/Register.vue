@@ -44,6 +44,9 @@ export default {
           username: this.username,
           password: this.password
         });
+        if (!this.error) {
+          await this.getData();
+        }
       } catch (error) {
         console.log(error);
       }
@@ -54,9 +57,16 @@ export default {
           username: this.username,
           password: this.password
         });
+        if (!this.error) {
+          await this.getData();
+        }
       } catch (error) {
         console.log(error);
       }
+    },
+    async getData() {
+      await this.$store.dispatch("getTransactions");
+      await this.$store.dispatch("getIncomes");
     }
   }
 };

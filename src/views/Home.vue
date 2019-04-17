@@ -18,13 +18,13 @@
         </div>
       </section>
     </div>
-    <register v-else></register>
+    <register v-else @getData="getData"></register>
   </div>
 </template>
 
 <script>
-
 import Register from "@/components/Register.vue";
+import { constants } from "crypto";
 
 export default {
   name: "home",
@@ -43,8 +43,15 @@ export default {
     }
   },
   async created() {
-    await this.$store.dispatch('getTransactions');
-    await this.$store.dispatch('getIncomes');
+    if (this.$store.state.user) {
+      await this.getData();
+    }
+  },
+  methods: {
+    async getData() {
+      await this.$store.dispatch("getTransactions");
+      await this.$store.dispatch("getIncomes");
+    }
   }
 };
 </script>
